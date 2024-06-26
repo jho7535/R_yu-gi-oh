@@ -4,408 +4,653 @@
     {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-
+    <title>CardPedia</title>
+    <link
+      href="{% static 'Ryugiohproject_app/logo.png' %}"
+      rel="shortcut icon"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'Ryugiohproject_app/css/mainpage/index.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'Ryugiohproject_app/css/mainpage/menu.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'Ryugiohproject_app/css/mainpage/scroll.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'Ryugiohproject_app/css/card.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'Ryugiohproject_app/css/footer.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <style>
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        background-color: black;
-        scroll-behavior: smooth;
-      }
-      body::-webkit-scrollbar {
+      /* 모달모달모달모달 */
+      /* 모달모달모달모달 */
+      /* 모달모달모달모달 */
+      /* 모달모달모달모달 */
+      .modal,
+      .modal2 {
         display: none;
-      }
-      ul {
-        list-style: none;
-      }
-      /* 맨 위 메뉴바의 스타일 */
-      #top-menu {
-        /* 상단 고정 */
+        justify-content: center;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        background-color: #333;
-        /* 디폴트로 불투명하게 설정 */
-        opacity: 0.5;
-      }
-
-      #top-menu:hover {
-        opacity: 1; /* 또렷하게 보이도록 불투명도를 1로 변경 */
-      }
-      #top-menu > a {
-        display: block; /* a태그는 글자성격 = inline */
-        float: left;
-        font-size: 30px;
-        font-weight: 900;
-        line-height: 80px;
-        padding: 0 30px;
-        text-decoration: none;
-        color: #fff;
-        font-size: 15px;
-      }
-      #top-menu > ul > li > a {
-        text-decoration: none;
-        color: #fff;
-        font-size: 15px;
-      }
-      #top-menu > ul {
-        float: right;
-      }
-      #top-menu > ul > li {
-        float: left;
-        padding: 0 30px;
-        line-height: 80px;
-      }
-      /* 중간 메뉴바의 스타일 */
-      #middle-menu {
-        left: 0;
-        width: 100%;
-        background-color: #666;
-        /* 디폴트로 불투명하게 설정 */
-        opacity: 0.5;
-        z-index: 10;
-      }
-      #middle-menu > a {
-        display: block; /* a태그는 글자성격 = inline */
-        float: left;
-        font-size: 30px;
-        font-weight: 900;
-        line-height: 80px;
-        padding: 0 30px;
-        text-decoration: none;
-        color: #fff;
-        font-size: 15px;
-      }
-      #middle-menu > ul > li > a {
-        text-decoration: none;
-        color: #fff;
-        font-size: 15px;
-      }
-      #middle-menu > ul {
-        float: right;
-      }
-      #middle-menu > ul > li {
-        float: left;
-        padding: 0 30px;
-        line-height: 80px;
-      }
-      #middle-menu:hover {
-        opacity: 1;
-      }
-
-      .bg-video {
-        width: 100vw;
-        height: 100vh;
-        background-attachment: fixed;
-      }
-      .bg-video {
-        width: 100vw;
-        height: 100vh;
-        position: relative;
-        overflow: hidden;
-      }
-      .bg-video__content {
-        width: 100%;
         height: 100%;
-        object-fit: cover;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 100;
       }
-      .base_div {
-        margin-top: 150px;
-        width: 80dvw;
-        height: 200vh;
+      .modal_body,
+      .modal_body2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        max-width: 1200px;
+        min-height: 600px;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .modal-content,
+      .modal-content2 {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+      }
+      .modal_body > .card,
+      .modal_body2 > .card {
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+        height: 300px;
+        margin-right: 20px;
+      }
+      .card_info,
+      .card_info2 {
+        flex: 1;
+        text-align: left;
+        margin-left: 50px;
+        position: relative;
+      }
+      .close-modal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+      .btn-open-modal,
+      .btn-open-modal2 {
+        border-radius: 10px;
+        font-size: 15px;
+        border: none;
+        background-color: burlywood;
+        padding: 10px 20px;
+        margin-top: 20px;
+      }
+
+      /* 버튼버튼버튼버튼버튼 */
+      /* 버튼버튼버튼버튼버튼 */
+      /* 버튼버튼버튼버튼버튼 */
+      /* 버튼버튼버튼버튼버튼 */
+      .w-btn-outline,
+      .w-btn-outline2 {
+        position: relative;
+        padding: 15px 30px;
+        border-radius: 15px;
+        font-family: "paybooc-Light", sans-serif;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.25s;
+        margin: 20px;
+        display: block;
         margin-left: auto;
         margin-right: auto;
-        background-color: #af8260;
-        border-radius: 20px;
+      }
+      .w-btn-skin-outline {
+        border: 3px solid #f8e6e0;
+        color: #6e6e6e;
+      }
+      .w-btn-skin-outline:hover {
+        background-color: #f8e6e0;
+        color: #6e6e6e;
+        cursor: pointer;
       }
 
-      /* 카드 나타나기 */
-      .base_div .fade-wrap {
-        /* 나타나는 효과가 1초동안 발생 */
-        transition: 2s;
-        opacity: 0;
+      .w-btn-outline:active {
+        transform: scale(1.5);
+      }
 
-        /* 왼쪽에서 오른쪽으로 나타나게 하기 위함 */
+      /* 하트하트하트하트 */
+      /* 하트하트하트하트 */
+      /* 하트하트하트하트 */
+      /* 하트하트하트하트 */
+      /* 하트하트하트하트 */
+      .large-font {
+        font-size: xxx-large;
+      }
+      .top-20 {
         position: relative;
-        left: -50px;
-
-        margin-bottom: 20px;
+        top: 20vh;
       }
-      .base_div .fade-wrap.fade-in {
-        opacity: 1;
-        left: 0;
+      ion-icon.active {
+        animation: like 0.5s 1;
+        fill: red;
+        stroke: none;
       }
-
-      /* 스크롤 유도 표시 */
-
-      a {
-        padding-top: 60px;
+      ion-icon {
+        fill: transparent;
+        stroke: black;
+        stroke-width: 30;
+        transition: all 0.5s;
+        width: 30px; /* 하트 아이콘의 너비를 조정 */
+        height: 30px; /* 하트 아이콘의 높이를 조정 */
       }
-
-      a span {
+      @-webkit-keyframes like {
+        0% {
+          transform: scale(1);
+        }
+        90% {
+          transform: scale(1.2);
+        }
+        100% {
+          transform: scale(1.1);
+        }
+      }
+      .heart-button {
         position: absolute;
-        top: 80vh;
-        left: 50%;
-        width: 24px;
-        height: 24px;
-        margin-left: -12px;
-        border-left: 1px solid #fff;
-        border-bottom: 1px solid #fff;
-        -webkit-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-        -webkit-animation: sdb 2s infinite;
-        animation: sdb 2s infinite;
-        box-sizing: border-box;
-        margin-bottom: 0;
+        bottom: 20px;
+        right: 20px;
       }
-      a h2 {
+
+      table {
+        margin-top: 50px;
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+      }
+      .narrow {
+        width: 15%;
+      }
+      .wide {
+        width: 35%;
+      }
+      .table_highlight {
+        background-color: #f8e6e0;
+        font-size: 20px;
+      }
+
+      .card_info_desc {
+        margin-top: 50px;
+
+        border: 1px solid;
+        text-align: left;
+      }
+      .card_info_price {
+        margin-top: 30px;
+        font-size: 18px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .price-item {
+        margin: 5px 0;
+      }
+
+      .price-label {
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .play-button {
+        width: 50px;
+        height: 50px;
+        background-color: grey;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        z-index: 1000; /* 다른 요소 위에 표시되도록 z-index 추가 */
+      }
+
+      .play-button i {
         color: white;
-        position: absolute;
-        margin: 0;
-        top: 85vh;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      @-webkit-keyframes sdb {
-        0% {
-          -webkit-transform: rotate(-45deg) translate(0, 0);
-        }
-        20% {
-          -webkit-transform: rotate(-45deg) translate(-10px, 10px);
-        }
-        40% {
-          -webkit-transform: rotate(-45deg) translate(0, 0);
-        }
-      }
-      @keyframes sdb {
-        0% {
-          transform: rotate(-45deg) translate(0, 0);
-        }
-        20% {
-          transform: rotate(-45deg) translate(-10px, 10px);
-        }
-        40% {
-          transform: rotate(-45deg) translate(0, 0);
-        }
-      }
-
-
-      .container {
-        width: 330px;
-        height: 465px;
-        transition: all 0.1s;
-        position: relative;
-      }
-      .overlay {
-        position: absolute;
-        width: 330px;
-        height: 465px;
-        background: linear-gradient(
-          105deg,
-          transparent 40%,
-          rgba(255, 219, 112, 0.8) 45%,
-          rgba(132, 50, 255, 0.6) 50%,
-          transparent 54%
-        );
-        filter: brightness(1.1) opacity(0.8);
-        mix-blend-mode: color-dodge;
-        background-size: 150% 150%;
-        background-position: 100%;
-        transition: all 0.1s;
-      }
-      .card {
-        width: 330px;
-        height: 465px;
-        background-image: url('https://i.namu.wiki/i/4eQ5JInPI6zLlVXwA9i3LrSZ2BaSbkNTEiukMw4CkcyPUsQQyOZXMkV9QEKTACbMv1zoqnrDGYgvZPf8irAISsHcwuOfSof9oVl83bor-E4CK6GzmUoK6YsleE575kSRJkjULNOqVoKxV9fMQaeRfA.webp');
-        background-size: cover;
+        font-size: 24px;
       }
     </style>
   </head>
   <body>
     <header id="top-menu">
-      <a href="#">logo</a>
+      <a href="/"
+        ><img
+          src="{% static 'Ryugiohproject_app/logo.png' %}"
+          width="80"
+          height="80"
+      /></a>
       <ul>
-        <li><a href="#">menu1</a></li>
-        <li><a href="#">menu2</a></li>
-        <li><a href="#">menu3</a></li>
-        <li><a href="#">menu4</a></li>
-        <li><a href="#">menu5</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'my_page' %}">마이페이지</a></li>
+        <li><a href="{% url 'logout' %}">로그아웃</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">로그인 / 회원가입</a></li>
+        {% endif %}
       </ul>
     </header>
+
     <div class="bg-video">
       <video class="bg-video__content" autoplay muted loop>
-        <source src="{% static 'video.mp4' %}" type="video/mp4" />
+        <source
+          src="{% static 'Ryugiohproject_app/video.mp4' %}"
+          type="video/mp4"
+        />
       </video>
     </div>
     <header id="middle-menu">
-      <a href="#">logo</a>
+      <ul class="left-memu">
+        <li class="dropdown">
+          <span class="dropbtn">캐릭터 덱 보기</span>
+          <div class="dropdown-content">
+            <a href="eachCharacter?character=yugi">유우기</a>
+            <a href="eachCharacter?character=kaiba">카이바</a>
+            <a href="eachCharacter?character=joey">조이</a>
+            <a href="eachCharacter?character=pegasus">페가수스</a>
+          </div>
+        </li>
+        <li><a href="allCards">모든 카드 보기</a></li>
+        <li><a href="gameGuide">게임 가이드</a></li>
+      </ul>
+      <ul class="center-logo">
+        <a href="/" class="center-logo-image"
+          ><img
+            src="{% static 'Ryugiohproject_app/logo.png' %}"
+            width="80"
+            height="80"
+        /></a>
+      </ul>
       <ul>
-        <li><a href="#">menu1</a></li>
-        <li><a href="#">menu2</a></li>
-        <li><a href="#">menu3</a></li>
-        <li><a href="#">menu4</a></li>
-        <li><a href="#">menu5</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'my_page' %}">마이페이지</a></li>
+        <li><a href="{% url 'logout' %}">로그아웃</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">로그인 / 회원가입</a></li>
+        {% endif %}
       </ul>
     </header>
-    <a id="scroll-link_icon">
-      <span></span>
-      <h2 id="scroll-link_text">스크롤 2</h2>
-    </a>
-    <div class="base_div">
-      <div class="fade-wrap">
-        <div class="container">
-          <div class="overlay"></div>
-          <div class="card"></div>
-        </div>
-      </div>
+    <div id="scroll-link">
+      <a id="scroll-link_icon">
+        <span></span>
+        <h2 id="scroll-link_text">스크롤</h2>
+      </a>
     </div>
+    <section class="middle-header"></section>
+    <setcion class="base_div">
+      <div class="base_text">
+        <h2>왕궁의 수호신 엑조디아</h2>
+        <br />
+        <span
+          >"<b>고대의 마신</b>이여, 봉인된 다섯 몸을 해방하여 나에게 힘을 다오!
+          나와라, <b>고대의 마신!</b> 소환신 <b>엑조디아!"</b>
+        </span>
+        <br /><br />
+        <span class="line"><b>Forbidden Exodia</b></span>
+      </div>
 
+      <div class="exodia">
+        {% for exodiaCard in exodia %}
+        <div class="fade-wrap">
+          <div class="container">
+            <div class="overlay"></div>
+            <div
+              class="card"
+              style="background-image: url('{{ exodiaCard.card_images }}');"
+            ></div>
+          </div>
+          <button class="w-btn-outline2 w-btn-skin-outline">정보보기</button>
+        </div>
+
+        <div class="modal">
+          <div class="modal_body">
+            <span class="close-modal">X</span>
+            <h2 class="modal-title">{{exodiaCard.name}}</h2>
+            <div class="modal-content">
+              <div class="fade-wrap">
+                <div class="container">
+                  <div class="overlay"></div>
+                  <div
+                    class="card"
+                    style="background-image: url('{{ exodiaCard.card_images }}');"
+                  ></div>
+                </div>
+              </div>
+              <div class="card_info">
+                <table>
+                  <colgroup>
+                    <col class="narrow" />
+                    <col class="wide" />
+                    <col class="narrow" />
+                    <col class="wide" />
+                  </colgroup>
+                  <tr>
+                    <td class="table_highlight">속성</td>
+                    <td>{{exodiaCard.attribute}}</td>
+                    <td class="table_highlight">레벨</td>
+                    <td>{{exodiaCard.level}}</td>
+                  </tr>
+                  <tr>
+                    <td class="table_highlight">공격력</td>
+                    <td>{{exodiaCard.atk}}</td>
+                    <td class="table_highlight">수비력</td>
+                    <td>{{exodiaCard.defense}}</td>
+                  </tr>
+                  <tfoot>
+                    <tr>
+                      <td colspan="4">
+                        {{exodiaCard.type}}/{{exodiaCard.race}}
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+                <table class="card_info_desc">
+                  <tr>
+                    <td class="table_highlight">카드 설명</td>
+                  </tr>
+                  <tr>
+                    <td>{{exodiaCard.desc}}</td>
+                  </tr>
+                </table>
+                <div class="card_info_price">
+                  <div class="price-item">
+                    <span class="price-label"><br /><br />eBay:</span>
+                    <span class="price-value"
+                      >{{ exodiaCard.card_prices.0.ebay_price }} $</span
+                    >
+                  </div>
+                  <div class="price-item">
+                    <span class="price-label">Amazon:</span>
+                    <span class="price-value"
+                      >{{ exodiaCard.card_prices.0.amazon_price }} $
+                    </span>
+                  </div>
+                </div>
+
+                <div class="heart-button">
+                  <ion-icon
+                    class="heart-color{% if exodiaCard.id in liked_cards %} active{% endif %}"
+                    name="heart"
+                    data-card-id="{{ exodiaCard.id }}"
+                  ></ion-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="base_text">
+        <h2>三幻神</h2>
+        <br />
+        <span
+          >지금 <b>신</b>의 힘으로, 사신을 물리치겠노라! 나와라,
+          <b>삼환신!!</b></span
+        >
+        <br /><br />
+        <span class="line"><b>Egyptian God</b></span>
+      </div>
+
+      <div class="threegod">
+        {% for threegodCard in threegod %}
+        <div class="fade-wrap">
+          <div class="container">
+            <div class="overlay"></div>
+            <div
+              class="card"
+              style="background-image: url('{{ threegodCard.card_images }}');"
+            ></div>
+          </div>
+          <button class="w-btn-outline2 w-btn-skin-outline">정보보기</button>
+        </div>
+
+        <div class="modal">
+          <div class="modal_body">
+            <span class="close-modal">X</span>
+            <h2 class="modal-title">{{threegodCard.name}}</h2>
+            <div class="modal-content">
+              <div class="fade-wrap">
+                <div class="container">
+                  <div class="overlay"></div>
+                  <div
+                    class="card"
+                    style="background-image: url('{{ threegodCard.card_images }}');"
+                  ></div>
+                </div>
+              </div>
+              <div class="card_info">
+                <table>
+                  <colgroup>
+                    <col class="narrow" />
+                    <col class="wide" />
+                    <col class="narrow" />
+                    <col class="wide" />
+                  </colgroup>
+                  <tr>
+                    <td class="table_highlight">속성</td>
+                    <td>{{threegodCard.attribute}}</td>
+                    <td class="table_highlight">레벨</td>
+                    <td>{{threegodCard.level}}</td>
+                  </tr>
+                  <tr>
+                    <td class="table_highlight">공격력</td>
+                    <td>{{threegodCard.atk}}</td>
+                    <td class="table_highlight">수비력</td>
+                    <td>{{threegodCard.defense}}</td>
+                  </tr>
+                  <tfoot>
+                    <tr>
+                      <td colspan="4">
+                        {{threegodCard.type}}/{{threegodCard.race}}
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+                <table class="card_info_desc">
+                  <tr>
+                    <td class="table_highlight">카드 설명</td>
+                  </tr>
+                  <tr>
+                    <td>{{threegodCard.desc}}</td>
+                  </tr>
+                </table>
+                <div class="card_info_price">
+                  <span>ebay: {{ threegodCard.card_prices.0.ebay_price }}</span
+                  ><br />
+                  <span
+                    >amazon: {{ threegodCard.card_prices.0.amazon_price }}</span
+                  ><br />
+                </div>
+                <div class="heart-button">
+                  <ion-icon
+                    class="heart-color{% if threegodCard.id in liked_cards %} active{% endif %}"
+                    name="heart"
+                    data-card-id="{{ threegodCard.id }}"
+                  ></ion-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </setcion>
+    <footer>
+      <p>
+        <br />
+        <span>개인정보 처리방침 | 이용약관 </span><br />
+        <span>All rights reserved @ CardPedia</span>
+      </p>
+      <nav>
+        <span>reference:</span>
+        <a href="https://github.com/kdhqwe1030/R_yu-gi-oh" target="_blank"
+          >Github</a
+        >
+        <a
+          href="https://jun-n.notion.site/c6338f7a0e624ed1ad7b7cc8a0634686?pvs=4"
+          target="_blank"
+          >Notion-1</a
+        >
+        <a
+          href="https://oxidized-ermine-630.notion.site/a14cd1a3d000462f9489936e1c052372?pvs=4"
+          target="_blank"
+          >Notion-2</a
+        ><br /><br />
+      </nav>
+    </footer>
+    <div class="play-button">
+      <i class="fas fa-play"></i>
+    </div>
+    <audio id="audio" src="{% static 'Ryugiohproject_app/bgm.mp3' %}"></audio>
     <script>
-      //스크롤 표시 클릭시에 아래 페이지로 이동
-      document
-        .getElementById('scroll-link_icon')
-        .addEventListener('click', function (event) {
-          event.preventDefault();
-          document.querySelector('.base_div').scrollIntoView({
-            behavior: 'smooth',
-          });
-        });
-      document
-        .getElementById('scroll-link_text')
-        .addEventListener('click', function (event) {
-          event.preventDefault();
-          document.querySelector('.base_div').scrollIntoView({
-            behavior: 'smooth',
+      document.addEventListener("DOMContentLoaded", () => {
+        const openModalButtons = document.querySelectorAll(
+          ".w-btn-outline, .w-btn-outline2"
+        );
+        const closeModalButtons = document.querySelectorAll(
+          ".close-modal, .close-modal2"
+        );
+        const modals = document.querySelectorAll(".modal, .modal2");
+
+        openModalButtons.forEach((button, index) => {
+          button.addEventListener("click", () => {
+            modals[index].style.display = "flex";
           });
         });
 
-      //카드 나타나기
-      const observer = new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('fade-in');
-            } else {
-              entry.target.classList.remove('fade-in');
+        closeModalButtons.forEach((button, index) => {
+          button.addEventListener("click", () => {
+            modals[index].style.display = "none";
+          });
+        });
+
+        window.addEventListener("click", (event) => {
+          modals.forEach((modal) => {
+            if (event.target === modal) {
+              modal.style.display = "none";
             }
           });
-        },
-        { threshold: 0.1 }
-      );
+        });
 
-      const targetElements = document.querySelectorAll('.fade-wrap');
-      targetElements.forEach((element) => {
-        observer.observe(element);
-      });
+        // 하트버튼
+        // 모든 하트 버튼을 선택합니다.
+        const heartIcons = document.querySelectorAll("ion-icon");
 
-      //카드 뒤집기
-      // var container = document.querySelector('.container');
-      // var overlay = document.querySelector('.overlay');
-      // container.addEventListener('mousemove', function (e) {
-      //   var x = e.offsetX;
-      //   var y = e.offsetY;
-      //   console.log(x, y);
-      //   var rotateY = (-1 / 5) * x + 20;
-      //   var rotateX = (4 / 30) * y - 20;
+        // 각 하트 버튼에 대한 클릭 이벤트를 처리합니다.
+        heartIcons.forEach((icon) => {
+          icon.addEventListener("click", () => {
+            // 클릭된 버튼의 카드 ID를 가져옵니다.
+            const cardId = icon.getAttribute("data-card-id");
+            console.log(cardId);
 
-      //   overlay.style = `background-position : ${
-      //     x / 5 + y / 5
-      //   }%; filter : opacity(${x / 200}) brightness(1.2)`;
+            // AJAX 요청을 보내어 서버에 좋아요 상태를 변경합니다.
+            fetch("/like-toggle/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCookie("csrftoken"), // CSRF 토큰을 포함합니다.
+              },
+              body: JSON.stringify({ card_id: cardId }), // 카드 ID를 요청 본문에 포함합니다.
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                // 서버에서 반환된 결과에 따라 버튼의 색상을 변경합니다.
+                if (data.result === "like") {
+                  icon.classList.add("active"); // 좋아요일 경우, 버튼에 빨간색을 추가합니다.
+                } else if (data.result === "unlike") {
+                  icon.classList.remove("active"); // 좋아요 취소일 경우, 버튼의 빨간색을 제거합니다.
+                }
+              })
+              .catch((error) => console.error("Error:", error));
+          });
+        });
 
-      //   container.style = `transform : perspective(350px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      // });
-
-      // container.addEventListener('mouseout', function () {
-      //   overlay.style = 'filter : opacity(0)';
-      //   container.style =
-      //     'transform : perspective(350px) rotateY(0deg) rotateX(0deg)';
-      // });
-      var container = document.querySelector('.container');
-      var overlay = document.querySelector('.overlay');
-      container.addEventListener('mousemove', function (e) {
-        var x = e.offsetX;
-        var y = e.offsetY;
-        console.log(x, y);
-        var rotateY = (-2 / 11) * x + 30; // updated for width 330
-        var rotateX = (4 / 31) * y - 30; // updated for height 465
-
-        overlay.style = `background-position : ${
-          x / 5 + y / 5
-        }%; filter : opacity(${x / 200}) brightness(1.2)`;
-
-        container.style = `transform : perspective(350px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      });
-
-      container.addEventListener('mouseout', function () {
-        overlay.style = 'filter : opacity(0)';
-        container.style =
-          'transform : perspective(350px) rotateY(0deg) rotateX(0deg)';
-      });
-
-      // 맨 위 메뉴와 중간 메뉴 변수 할당
-      const topMenu = document.getElementById('top-menu');
-      const middleMenu = document.getElementById('middle-menu');
-
-      // 중간 메뉴바의 위치 계산
-      let middleMenuTop = middleMenu.offsetTop;
-      let middleMenuHeight = middleMenu.offsetHeight;
-
-      // 스크롤 이벤트 핸들러
-      window.addEventListener('scroll', function () {
-        // 스크롤하는 높이를 체크
-        let scrollPosition = window.scrollY;
-
-        // 스크롤하는 위치가 중간 메뉴보다 클 경우 (중간 메뉴보다 더 아래로 스크롤 할 경우)
-        if (scrollPosition >= middleMenuTop) {
-          // 맨 위 메뉴바의 display 속성을 none으로 변경
-
-          topMenu.style.display = 'none';
-
-          // 중간 메뉴바의 position을 맨 위 메뉴바의 속성으로 변경
-          middleMenu.style.position = 'fixed';
-          middleMenu.style.top = '0';
-          middleMenu.style.left = '0';
-          middleMenu.style.width = '100%';
-          middleMenu.style.opacity = 1;
-
-          // 중간 메뉴바의 투명도 이벤트 리스너 해제
-          middleMenu.removeEventListener('mouseover', setOpacityToOne);
-          middleMenu.removeEventListener('mouseout', setOpacityToHalf);
-        } else {
-          // 맨 위 메뉴바의 display 속성을 block으로 변경
-          topMenu.style.display = 'block';
-
-          // 중간 메뉴바를 다시 원래 속성으로 변경
-          middleMenu.style.position = 'static';
-          middleMenu.style.opacity = 0.5;
-
-          // 중간 메뉴바의 투명도 이벤트 리스너 등록
-          middleMenu.addEventListener('mouseover', setOpacityToOne);
-          middleMenu.addEventListener('mouseout', setOpacityToHalf);
+        // CSRF 토큰을 가져오는 함수입니다.
+        function getCookie(name) {
+          let cookieValue = null;
+          if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              // 쿠키의 이름이 일치하는 경우, 값을 추출합니다.
+              if (cookie.substring(0, name.length + 1) === name + "=") {
+                cookieValue = decodeURIComponent(
+                  cookie.substring(name.length + 1)
+                );
+                break;
+              }
+            }
+          }
+          return cookieValue;
         }
       });
-
-      // 투명도 1로 설정
-      function setOpacityToOne() {
-        middleMenu.style.opacity = '1';
-      }
-
-      // 투명도 0.5로 설정
-      function setOpacityToHalf() {
-        middleMenu.style.opacity = '0.5';
-      }
     </script>
+    <script>
+      // 음악재생 버튼
+      document.addEventListener("DOMContentLoaded", function () {
+        const playButton = document.querySelector(".play-button");
+        const audio = document.getElementById("audio");
+        const icon = playButton.querySelector("i");
+
+        playButton.addEventListener("click", function () {
+          if (audio.paused) {
+            audio.play();
+            icon.classList.remove("fa-play");
+            icon.classList.add("fa-pause");
+          } else {
+            audio.pause();
+            icon.classList.remove("fa-pause");
+            icon.classList.add("fa-play");
+          }
+        });
+      });
+    </script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="{% static 'Ryugiohproject_app/js/card.js' %}"></script>
+    <script src="{% static 'Ryugiohproject_app/js/menu.js' %}"></script>
+    <script src="{% static 'Ryugiohproject_app/js/scroll.js' %}"></script>
   </body>
 </html>
-
-<!-- - 메뉴바 고정
-https://stickode.tistory.com/889 -->
-
-<!-- 배경 고정 
-  https://shynaunum.tistory.com/9
-https://velog.io/@joch2712/%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98-%EA%B5%AC%ED%98%84
-https://moneytech.kr/106#google_vignette -->
